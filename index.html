@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>CO3 Quiz · Numerical Differentiation and Integration</title>
+<style>
+:root{--bg:#f2f6fc;--fg:#12233f;--card:#fff;--bd:#d3deef;--b:#0b3d91;--b2:#1e63d6;--ok:#15803d;--bad:#b91c1c;--mk:#d97706;--soft:#e8f0ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0e1626;--fg:#e6edf8;--card:#16213a;--bd:#2a3a5c;--b:#8fb8ff;--b2:#3b7bf0;--soft:#1d2b4a}}
+:root[data-theme=dark]{--bg:#0e1626;--fg:#e6edf8;--card:#16213a;--bd:#2a3a5c;--b:#8fb8ff;--b2:#3b7bf0;--soft:#1d2b4a}
+html,body{height:100%}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,Segoe UI,Arial,sans-serif}
+.v{display:none}.v.on{display:block}.hd{background:#0b3d91;color:#fff;padding:12px 20px;display:flex;gap:12px;align-items:center;position:sticky;top:env(safe-area-inset-top,0px);z-index:9}
+.w{max-width:960px;margin:0 auto;padding:20px 14px}.c{text-align:center}.p{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:20px;margin:12px 0}h1{color:var(--b);margin:8px 0 0;font-size:32px}button{font:inherit;cursor:pointer}
+.bt{background:var(--b2);color:#fff;border:0;border-radius:9px;padding:9px 16px;font-weight:600}.bt:disabled{opacity:.4}.bt.o{background:transparent;color:var(--b);border:1px solid var(--b2)}.bt.r{background:var(--bad)}
+input[type=text],input[type=password]{width:100%;padding:10px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--fg);font:inherit;box-sizing:border-box}label{display:block;font-weight:600;margin:10px 0 4px}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;text-align:left}.al{background:#fee2e2;border:1px solid #f5a3a3;color:#7f1d1d;padding:10px 14px;border-radius:10px;margin:10px 0}.nt{font-size:13px;opacity:.85;border:1px dashed var(--bd);padding:10px;border-radius:10px;margin-top:14px}
+.lay{display:grid;grid-template-columns:1fr 260px;gap:14px;max-width:1080px;margin:0 auto;padding:12px}@media(max-width:800px){.lay{grid-template-columns:1fr}}
+.op{display:flex;gap:10px;width:100%;text-align:left;background:var(--card);color:var(--fg);border:2px solid var(--bd);border-radius:10px;padding:11px;margin:8px 0}.op b{background:var(--soft);border-radius:6px;min-width:26px;text-align:center}.op.s{border-color:var(--b2);background:var(--soft)}
+.pl{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.pl button{padding:7px 0;border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:7px;font-weight:600}.pl .a{background:var(--ok);color:#fff}.pl .m{background:var(--mk);color:#fff}.pl .u{outline:3px solid var(--b2)}
+.tmr{font-weight:700;font-size:20px;background:#fff;color:#0b3d91;padding:2px 12px;border-radius:8px}.tmr.lo{background:var(--bad);color:#fff}#q{user-select:none;-webkit-user-select:none}#wm{position:fixed;inset:0;pointer-events:none;z-index:5}
+.md{display:none;position:fixed;inset:0;z-index:50;background:#000b;align-items:center;justify-content:center;padding:16px}.md.on{display:flex}.md>div{background:var(--card);border-radius:14px;padding:24px;max-width:440px;text-align:center}.md.wr>div{border:4px solid var(--bad)}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{border:1px solid var(--bd);padding:6px 8px;text-align:left}th{background:var(--soft)}.tw{overflow-x:auto}.big{font-size:52px;font-weight:800;color:var(--b)}.st{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:12px 0}.st div{background:var(--soft);border-radius:10px;padding:8px}@media print{body{display:none}}
+</style>
+</head>
+<body>
+<div id="wm"></div>
+
+<section id="home" class="v on">
+  <div class="hd"><b>SIMATS Engineering</b><span>· Department of Mathematics</span></div>
+  <div class="w c">
+    <small>MS2 · SEP – DEC 2026 · Online Assessment Portal</small>
+    <h1>CO3 Quiz Assessment</h1>
+    <h3>Numerical Differentiation and Integration</h3>
+    <p>Approximation of derivatives using interpolation polynomials; trapezoidal, Simpson’s 1/3 and 3/8 rules; Romberg’s method; two- and three-point Gaussian quadrature; double integrals using trapezoidal and Simpson’s rules.</p>
+    <p><b>50 questions · 50 marks · 60 minutes</b></p>
+    <div class="g">
+      <div class="p"><h2>🎓 Student</h2><p>Register with your name, register number and faculty name, read the instructions and take the quiz.</p><button class="bt" onclick="go('reg')">Start / Resume Quiz →</button></div>
+      <div class="p"><h2>📊 Faculty</h2><p>Monitor attempts and malpractice cases, and download results.</p><button class="bt o" onclick="go('fl')">Open Faculty Dashboard →</button></div>
+    </div>
+    <p class="nt"><b>Note:</b> Browser-based malpractice monitoring is limited. It cannot reliably detect every external device, operating-system tool, or browser extension. For consequential assessments, use an institution-approved proctoring system and accessible assessment policy.</p>
+  </div>
+</section>
+
+<section id="reg" class="v"><div class="w" style="max-width:500px"><div class="p">
+  <h2>Student Registration</h2>
+  <form onsubmit="reg(event)" autocomplete="off">
+    <label>Full name</label><input type="text" id="n" required>
+    <label>Register number</label><input type="text" id="r" required>
+    <label>Faculty name</label><input type="text" id="f" required>
+    <label>Course code</label><input type="text" id="cc" value="CO3" required>
+    <p><button class="bt">Continue →</button> <button type="button" class="bt o" onclick="go('home')">Back</button></p>
+  </form>
+</div></div></section>
+
+<section id="ins" class="v"><div class="w"><div class="p">
+  <h2>Instructions</h2><p id="iw"></p>
+  <ol>
+    <li>50 MCQs · 50 marks · 60 minutes · no negative marking. The timer cannot be paused and the quiz auto-submits at zero.</li>
+    <li>Answers save automatically. After a refresh or crash, register again with the same register number and press Resume.</li>
+    <li>The quiz requests full-screen mode. Copy, paste, right-click, print, and common developer-tool shortcuts are restricted during the attempt.</li>
+    <li>One attempt per register number unless faculty resets the attempt.</li>
+  </ol>
+  <div class="al"><b>Malpractice policy:</b> The configured browser-detected violation limit is one. A detected violation immediately auto-submits the quiz as malpractice. Browser events can be triggered accidentally, so use this setting only with a clearly communicated institutional policy.</div>
+  <label><input type="checkbox" onchange="sb.disabled=!this.checked"> I have read and agree to the instructions.</label>
+  <p><button class="bt" id="sb" disabled onclick="start()">Start / Resume Quiz</button> <button class="bt o" onclick="go('reg')">Back</button></p>
+</div></div></section>
+
+<section id="q" class="v"><div class="hd"><b>CO3 Quiz</b><span id="wh" style="flex:1"></span><span class="tmr" id="tm">--:--</span></div>
+  <div class="lay"><div class="p" style="margin:0"><small id="qn"></small><h3 id="qt" style="font-size:19px"></h3><div id="op"></div>
+    <p><button class="bt o" id="pv" onclick="nv(-1)">← Previous</button> <button class="bt o" id="nx" onclick="nv(1)">Next →</button> <button class="bt o" onclick="clr()">Clear</button> <button class="bt o" id="mk" onclick="mark()"></button></p>
+  </div><div class="p" style="margin:0"><b>Question palette</b><div class="pl" id="pl" style="margin-top:8px"></div><small>Green answered · Orange review · Outlined current</small><p><button class="bt r" style="width:100%" onclick="ask()">Submit Quiz</button></p></div></div>
+</section>
+
+<section id="res" class="v"><div class="w c" style="max-width:720px"><div class="p"><h2>Quiz Result</h2><div id="rb"></div><div id="rw"></div><div class="big" id="rs"></div><b id="rp"></b><div class="st" id="rt"></div><div class="tw"><table id="tp"></table></div><p><button class="bt" onclick="go('home')">Home</button></p></div></div></section>
+
+<section id="fl" class="v"><div class="w" style="max-width:400px"><div class="p"><h2>Faculty Login</h2><label>Password</label><input type="password" id="pw" onkeydown="if(event.key==='Enter')fac()"><p><button class="bt" onclick="fac()">Login</button> <button class="bt o" onclick="go('home')">Back</button></p></div></div></section>
+
+<section id="fd" class="v"><div class="w" style="max-width:1100px"><h2>Faculty Dashboard</h2><p><button class="bt" onclick="load()">⟳ Refresh</button> <button class="bt o" onclick="csv()">⬇ Download results (CSV)</button> <button class="bt o" onclick="go('home')">Logout</button></p><div class="st" id="fs"></div><div class="tw"><table id="ft"></table></div></div></section>
+
+<div class="md wr" id="wn"><div><h1 style="color:var(--bad);margin:0">⚠ WARNING</h1><h2 id="wc"></h2><p id="wt"></p><button class="bt r" onclick="cw()">Return to Quiz</button></div></div>
+<div class="md" id="sm"><div><h2>Submit quiz?</h2><p id="st2"></p><button class="bt r" onclick="sm.classList.remove('on');fin('done')">Yes, submit</button> <button class="bt o" onclick="sm.classList.remove('on')">Cancel</button></div></div>
+
+<script>
+const C={pw:"faculty@2026",dur:60,max:1};
+/* Paste your Google Apps Script Web App URL (ending in /exec) between the quotes to enable cross-device sync. */
+const SYNC="";
+const T=["Interpolation Derivatives","Trapezoidal Rule","Simpson’s 1/3 and 3/8 Rules","Romberg’s Method","Gaussian Quadrature","Double Integrals"];
+/* Each row: [topicIndex, question, correct answer, distractor 1, distractor 2, distractor 3]. Options are shuffled per attempt. */
+const RAW=[
+[0,"The quadratic interpolant through (0,1), (1,3), and (2,7) is differentiated at x=1. What derivative does the interpolant give?","3","2","4","5"],
+[0,"The quadratic interpolant passes through (0,1), (1,2), and (2,5). Its derivative at x=1 is","2","1","3","4"],
+[0,"The data (0,0), (1,1), and (3,9) are interpolated by a quadratic. The derivative of that interpolant at x=2 is","4","3","5","2"],
+[0,"For equally spaced data y(0)=1, y(1)=2, y(2)=5, y(3)=10, use the complete forward-difference derivative formula at x=0. What is the result?","0","1","2","−1"],
+[0,"For x=0,1,2,3 and y=1,2,5,10, use the backward-difference derivative formula at the final node x=3. What is the result?","6","5","7","8"],
+[0,"Given f(0)=1, f(1)=4, f(2)=9, the basic centered quotient (f(2)−f(0))/(2h), with h=1, estimates f′(1) as","4","2","3","5"],
+[0,"For f(x)=x³ with h=1, the forward differences at x=0 are Δy₀=1, Δ²y₀=6, Δ³y₀=6. Using f′(x₀)≈(1/h)[Δy₀−Δ²y₀/2+Δ³y₀/3], the result is","0","1","2","−1"],
+[0,"The Lagrange interpolant through (1,1), (2,4), and (4,16) is differentiated at x=3. What derivative is obtained?","6","5","8","9"],
+[0,"An interpolating polynomial through n+1 distinct nodes is used to approximate f′(x). Which statement guarantees an exact derivative for every x in the interval?","The underlying function is a polynomial of degree at most n","The nodes are equally spaced, whatever the function","The evaluation point is always a node","The function is monotonic"],
+[0,"For x=0,1,2,3 and y=0,1,8,27, evaluate the endpoint formula f′(x₃)≈(1/h)[∇y₃+∇²y₃/2+∇³y₃/3], h=1. What value results?","27","19","25","30"],
+[1,"Using the composite trapezoidal rule with n=2 on [0,2], estimate ∫₀²x² dx. What is the estimate?","3","8/3","10/3","2"],
+[1,"The composite trapezoidal rule with h=0.5 is applied to ∫₀¹x² dx. What value does it return?","3/8","1/3","5/12","1/4"],
+[1,"A single trapezoid uses endpoint values f(a)=2 and f(b)=6 with width h=0.25. Its integral estimate is","1","2","0.5","1.5"],
+[1,"Apply the composite trapezoidal rule with n=4 to ∫₀²x² dx. What is the estimate?","2.75","8/3","2.5","3"],
+[1,"For a twice-differentiable convex function on an interval, the composite trapezoidal rule generally produces an estimate that is","greater than the exact integral","less than the exact integral","exact for every convex function","zero if the endpoints match"],
+[1,"When the step size h is halved, the leading error of the composite trapezoidal rule is reduced approximately by which factor, assuming the usual smoothness conditions?","4","2","8","16"],
+[2,"Apply Simpson’s 1/3 rule with two subintervals to ∫₀²x³ dx. What is the estimate?","4","3","16/3","8"],
+[2,"Composite Simpson’s 1/3 rule with h=0.5 is applied to ∫₀²x⁴ dx. What value results?","77/12","32/5","13/2","19/3"],
+[2,"Why can the standard composite Simpson’s 1/3 rule not be applied by itself to a partition with exactly five equal subintervals?","Its number of subintervals must be even","Its number of subintervals must be odd","It requires exactly three subintervals","The function must be linear"],
+[2,"Apply Simpson’s 3/8 rule once to ∫₀³x³ dx using h=1. What estimate is obtained?","81/4","20","27","63/4"],
+[2,"Apply the composite Simpson’s 3/8 rule with six equal subintervals, h=0.5, to ∫₀³x⁴ dx. What is the estimate?","48.65625","48.6","48.75","49.125"],
+[2,"For the standard composite Simpson’s 3/8 rule to be applied over equal subintervals, the number of subintervals must be","a multiple of 3","even only","a multiple of 2 but not 3","prime"],
+[2,"Which statement about polynomial exactness is correct for the standard Simpson’s 1/3 and 3/8 rules?","Both integrate every polynomial of degree at most 3 exactly","Both are exact only up to degree 2","Only Simpson’s 1/3 is exact for cubics","Simpson’s 3/8 is exact through degree 4"],
+[3,"The trapezoidal estimates for the same integral are T(h)=2.5 and T(h/2)=2.1. The first Romberg extrapolation (4T(h/2)−T(h))/3 is","1.9666667 approximately","2.0","2.1","1.9"],
+[3,"A Romberg table begins with R₁,₁=1.5 and R₂,₁=1.375. What is R₂,₂?","4/3","1.375","1.25","1.5"],
+[3,"If T(h)=3.0 and T(h/2)=2.25, the first Romberg-extrapolated value is","2.0","2.25","1.75","2.5"],
+[3,"Given T(h)=1.6 and T(h/2)=1.4, calculate (4T(h/2)−T(h))/3.","4/3","1.4","1.2","1.5"],
+[3,"In the usual 1-based Romberg notation Rᵢ,ⱼ=Rᵢ,ⱼ₋₁+(Rᵢ,ⱼ₋₁−Rᵢ₋₁,ⱼ₋₁)/(4^(j−1)−1), what is the denominator when j=3?","15","3","4","63"],
+[3,"If T(h)=I+ch²+O(h⁴), which combination cancels the leading O(h²) trapezoidal error?","(4T(h/2)−T(h))/3","(2T(h/2)−T(h))/1","(T(h)+T(h/2))/2","(T(h/2)−T(h))/3"],
+[3,"Under the usual smoothness assumptions, the first Romberg extrapolation from trapezoidal estimates improves the leading error order from","O(h²) to O(h⁴)","O(h) to O(h²)","O(h⁴) to O(h⁶)","O(h²) to O(h³)"],
+[4,"For two-point Gauss–Legendre quadrature on [−1,1], which nodes and weights are used?","Nodes ±1/√3, each with weight 1","Nodes ±1/√2, each with weight 1/2","Nodes −1 and 1, each with weight 1","Nodes 0 and 1, each with weight 1/2"],
+[4,"An n-point Gauss–Legendre rule integrates every polynomial exactly up to degree","2n−1","n","2n","n+1"],
+[4,"Apply two-point Gauss–Legendre quadrature to ∫₋₁¹x⁴ dx. What approximation is produced?","2/9","2/5","1/3","4/9"],
+[4,"For three-point Gauss–Legendre quadrature on [−1,1], the central node and its weight are","0 and 8/9","0 and 5/9","1/√3 and 1","0 and 1/3"],
+[4,"Apply three-point Gauss–Legendre quadrature to ∫₋₁¹x⁶ dx. What approximation is obtained?","6/25","2/7","2/5","8/27"],
+[4,"Two-point Gauss–Legendre quadrature on [0,1] is applied to ∫₀¹x⁴ dx. What value is returned?","7/36","1/5","2/9","5/24"],
+[4,"Under the affine substitution from t∈[−1,1] to x∈[a,b], x=(a+b)/2+(b−a)t/2, the differential transforms as","dx=(b−a)dt/2","dx=(b+a)dt/2","dx=2dt/(b−a)","dx=(b−a)dt"],
+[4,"Three-point Gauss–Legendre quadrature integrates which of these exactly on [−1,1]?","x⁵","x⁶","x⁸","1/x"],
+[4,"Two-point Gauss–Legendre quadrature applied to ∫₀²x³ dx gives","4","3","8/3","16/3"],
+[4,"What is the degree of precision of a four-point Gauss–Legendre quadrature rule?","7","4","8","5"],
+[5,"The single-cell two-dimensional trapezoidal rule on a rectangle of area A uses the corner values with which common factor?","A/4","A/2","A","A/8"],
+[5,"For f(x,y)=x²+y² on [0,1]×[0,1], the single-cell two-dimensional trapezoidal estimate using only the four corners is","1","2/3","3/4","1/2"],
+[5,"For f(x,y)=xy on the unit square, the single-cell two-dimensional trapezoidal rule gives","1/4","1/2","1/3","1/8"],
+[5,"Apply product Simpson’s 1/3 rule on [0,2]×[0,2] to f(x,y)=x²+y², using two subintervals in each direction. What result is obtained?","32/3","16/3","8","64/9"],
+[5,"In the 3×3 product Simpson’s 1/3 weight grid, before multiplying by hₓhᵧ/9, what is the centre-point weight?","16","4","8","9"],
+[5,"In a 3×3 product composite-trapezoidal weight grid, before multiplying by hₓhᵧ/4, what is the centre-point weight?","4","2","1","8"],
+[5,"For product composite Simpson’s 1/3 rule on a rectangular grid, which subinterval counts are admissible?","An even number in each coordinate direction","An odd number in each coordinate direction","A multiple of 3 in each direction only","Any number in x, but exactly two in y"],
+[5,"Estimate the double integral of x² over the rectangle 0≤x≤2, 0≤y≤1 using two x-subintervals and one y-subinterval with the composite trapezoidal rule. What value results?","3","8/3","2.5","4"],
+[5,"Product Simpson’s 1/3 rule with two subintervals per axis is applied to ∫₀²∫₀² x²y² dy dx. What value results?","64/9","16/3","32/9","8"],
+[5,"Using one Simpson’s 1/3 panel in x and exact integration of the constant y-dependence, estimate ∫₀¹∫₀¹ x⁴ dy dx. What is the estimate?","5/24","1/5","1/6","7/36"],
+
+];
+
+/* Verify the bank has exactly 50 questions before beginning. */
+if(RAW.length!==50)throw new Error("CO3 question bank must contain exactly 50 questions; found "+RAW.length);
+const Q=RAW.map((r,i)=>({t:r[0],q:r[1],o:[r[2],r[3],r[4],r[5]],a:0}));
+const $=i=>document.getElementById(i),E=s=>String(s).replace(/[&<>"']/g,c=>"&#"+c.charCodeAt(0)+";");
+const g=k=>{try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},s=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const hs=x=>{let h=2166136261;for(const c of x){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0};
+const rg=z=>()=>{z|=0;z=z+0x6D2B79F5|0;let t=Math.imul(z^z>>>15,1|z);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+const sh=(a,R)=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(R()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const mmss=x=>String(Math.floor(x/60)).padStart(2,"0")+":"+String(x%60).padStart(2,"0");
+let A=null,P=null,live=0,FS=1,lastV=0,open=0,tmr=0,L=[];
+function go(v){document.querySelectorAll(".v").forEach(x=>x.classList.toggle("on",x.id===v));scrollTo(0,0)}
+async function put(a){s("co3a_"+a.r,a);if(SYNC)try{const{qs,...x}=a;await fetch(SYNC,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify(x)})}catch(e){}}
+async function reg(e){e.preventDefault();const n=$("n").value.trim(),r=$("r").value.trim().toUpperCase(),f=$("f").value.trim(),x=g("co3a_"+r),msg="This register number has already attempted the quiz. Only one attempt is allowed.";let X=x;if(SYNC)try{const j=await(await fetch(SYNC+"?reg="+encodeURIComponent(r))).json();if(j.found&&j.st!=="run")return alert(msg);if(!j.found&&X&&X.st!=="run"){localStorage.removeItem("co3a_"+r);X=null}}catch(e){}if(X&&X.st!=="run")return alert(msg);A=X;P={n,r,f,c:$("cc").value.trim().toUpperCase()};$("iw").textContent=`${n} · ${r} · ${f}`+(X?" (resuming your attempt)":"");go("ins")}
+async function start(){FS=!!document.documentElement.requestFullscreen;if(FS)try{await document.documentElement.requestFullscreen()}catch(e){FS=0}if(!A){const R=rg(hs(P.r));const qs=sh(Q.map(q=>{const ix=sh([0,1,2,3],R);return{t:q.t,q:q.q,o:ix.map(i=>q.o[i]),a:ix.indexOf(0)}}),R);A={n:P.n,r:P.r,f:P.f,c:P.c,t0:Date.now(),qs,an:{},mk:{},i:0,v:[],st:"run"};put(A)}if(left()<=0)return fin("done");live=1;open=0;lastV=Date.now()+1500;go("q");$("wh").textContent=`${A.n} · ${A.r}`;wm();draw();clearInterval(tmr);tmr=setInterval(tick,1000);tick()}
+const left=()=>C.dur*60-Math.floor((Date.now()-A.t0)/1000);
+function tick(){const l=left();$("tm").textContent=mmss(Math.max(l,0));$("tm").classList.toggle("lo",l<300);if(l<=0)fin("done")}
+function wm(){const t=(A.n+" · "+A.r).replace(/[&<>"']/g,"");$("wm").style.backgroundImage=`url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='340' height='170'><text x='20' y='95' transform='rotate(-25 170 85)' font-size='16' font-family='Arial' fill='rgba(90,130,200,0.14)'>${t}</text></svg>`)}")`}
+function draw(){const q=A.qs[A.i];$("qn").textContent=`Question ${A.i+1} of ${A.qs.length}`;$("qt").textContent=q.q;$("op").innerHTML=q.o.map((o,k)=>`<button class="op${A.an[A.i]===k?" s":""}" onclick="pk(${k})"><b>${"ABCD"[k]}</b><span>${E(o)}</span></button>`).join("");$("mk").textContent=A.mk[A.i]?"★ Unmark":"☆ Mark for review";$("pv").disabled=A.i===0;$("nx").disabled=A.i===A.qs.length-1;$("pl").innerHTML=A.qs.map((_,i)=>`<button class="${A.an[i]!==undefined?"a":""} ${A.mk[i]?"m":""} ${i===A.i?"u":""}" onclick="A.i=${i};sv();draw()">${i+1}</button>`).join("")}
+const sv=()=>s("co3a_"+A.r,A);function pk(k){A.an[A.i]=k;sv();draw()}function clr(){delete A.an[A.i];sv();draw()}function mark(){A.mk[A.i]=!A.mk[A.i];if(!A.mk[A.i])delete A.mk[A.i];sv();draw()}function nv(d){A.i+=d;sv();draw()}
+function ask(){const a=Object.keys(A.an).length;$("st2").innerHTML=`Answered <b>${a}</b> · Unanswered <b>${A.qs.length-a}</b> · Marked <b>${Object.keys(A.mk).length}</b><br>You cannot change answers after submitting.`;$("sm").classList.add("on")}
+function fin(st){if(!A||A.st!=="run")return;live=0;clearInterval(tmr);let c=0,w=0;A.qs.forEach((q,i)=>{const a=A.an[i];if(a!==undefined)a===q.a?c++:w++});Object.assign(A,{st,end:Date.now(),ok:c,wr:w,un:A.qs.length-c-w,sc:c,tot:A.qs.length,tk:Math.max(0,Math.min(Math.floor((Date.now()-A.t0)/1000),C.dur*60))});put(A);$("wn").classList.remove("on");$("sm").classList.remove("on");if(document.fullscreenElement)document.exitFullscreen().catch(()=>{});$("rb").innerHTML=st==="mal"?`<div class="al">⚠ Auto-submitted due to malpractice (${A.v.length} detected violation${A.v.length===1?"":"s"}).</div>`:"";$("rw").textContent=`${A.n} · ${A.r} · ${A.f}`;$("rs").textContent=`${A.sc} / ${A.tot}`;$("rp").textContent=(A.sc/A.tot*100).toFixed(1)+"%";$("rt").innerHTML=`<div><b>${A.ok}</b><br>Correct</div><div><b>${A.wr}</b><br>Wrong</div><div><b>${A.un}</b><br>Unattempted</div><div><b>${mmss(A.tk)}</b><br>Time taken</div>`;const tp={};A.qs.forEach((q,i)=>{const o=tp[T[q.t]]=tp[T[q.t]]||[0,0];o[1]++;if(A.an[i]===q.a)o[0]++});$("tp").innerHTML="<tr><th>Topic</th><th>Correct</th><th>Total</th></tr>"+Object.entries(tp).map(([k,v])=>`<tr><td>${E(k)}</td><td>${v[0]}</td><td>${v[1]}</td></tr>`).join("");go("res")}
+/* ---- proctoring: auto-submit at the first detected violation ---- */
+function viol(t){if(!live||open||Date.now()-lastV<1500)return;lastV=Date.now();A.v.push({t,at:new Date().toISOString()});put(A);if(A.v.length>=C.max)return fin("mal");$("wc").textContent=`Warning ${A.v.length} of ${C.max}`;$("wt").innerHTML=`Violation: <b>${E(t)}</b>.<br>The quiz will auto-submit at ${C.max} detected violation.`;$("wn").classList.add("on");open=1}
+async function cw(){if(FS&&!document.fullscreenElement)try{await document.documentElement.requestFullscreen()}catch(e){}$("wn").classList.remove("on");open=0;lastV=Date.now()}
+document.addEventListener("visibilitychange",()=>{if(document.hidden)viol("Tab switched / window hidden")});addEventListener("blur",()=>viol("Window lost focus"));document.addEventListener("fullscreenchange",()=>{if(live&&FS&&!document.fullscreenElement)viol("Exited full-screen")});["copy","cut","paste","contextmenu","selectstart","dragstart"].forEach(v=>document.addEventListener(v,e=>{if(live)e.preventDefault()},true));
+document.addEventListener("keydown",e=>{if(!live)return;const k=e.key.toLowerCase(),c=e.ctrlKey||e.metaKey;if(e.key==="F12"||(c&&e.shiftKey&&"ijc".includes(k))||(c&&k==="u")){e.preventDefault();return viol("Developer tools shortcut")}if((c&&"cvxaps".includes(k))||(e.altKey&&e.key==="Tab"))e.preventDefault()},true);document.addEventListener("keyup",e=>{if(live&&e.key==="PrintScreen"){try{navigator.clipboard.writeText("")}catch(x){}viol("Screenshot key pressed")}});addEventListener("beforeunload",e=>{if(live){e.preventDefault();e.returnValue=""}});
+/* Deliberately avoid debugger-detection loops that can generate false positives in ordinary browsers. */
+document.addEventListener("keydown",e=>{if(live&&e.key==="PrintScreen")viol("Screenshot key pressed")},true);
+/* ---- faculty ---- */
+function fac(){if($("pw").value!==C.pw)return alert("Wrong password");$("pw").value="";go("fd");load()}
+async function load(){const m={};try{Object.keys(localStorage).filter(k=>k.startsWith("co3a_")).forEach(k=>{const a=g(k);if(a)m[a.r]=a})}catch(e){}if(SYNC)try{(await(await fetch(SYNC+"?all=1")).json()).forEach(a=>{m[a.r]=Object.assign(m[a.r]||{},a)})}catch(e){}L=Object.values(m).sort((a,b)=>a.t0-b.t0);const lb=a=>a.st==="done"?"Completed":a.st==="mal"?"Auto-submitted – Malpractice":"In progress";$("fs").innerHTML=`<div><b>${L.length}</b><br>Attempts</div><div><b>${L.filter(a=>a.st==="done").length}</b><br>Completed</div><div><b>${L.filter(a=>a.st==="mal").length}</b><br>Malpractice</div><div><b>${L.filter(a=>a.st==="run").length}</b><br>In progress</div>`;$("ft").innerHTML="<tr><th>#</th><th>Name</th><th>Register No</th><th>Faculty</th><th>Score/50</th><th>Time</th><th>Violations</th><th>Status</th><th>Submitted</th><th></th></tr>"+L.map((a,i)=>`<tr><td>${i+1}</td><td>${E(a.n)}</td><td>${E(a.r)}</td><td>${E(a.f)}</td><td>${a.sc??"–"}</td><td>${a.tk!=null?mmss(a.tk):"–"}</td><td title="${E((a.v||[]).map(v=>v.t).join("; "))}">${(a.v||[]).length}</td><td>${lb(a)}</td><td>${a.end?new Date(a.end).toLocaleString():"–"}</td><td><button class="bt r" onclick="rs2('${E(a.r)}')">Reset</button></td></tr>`).join("")}
+async function rs2(r){if(!confirm("Reset the attempt of "+r+" so the student can retake?"))return;try{localStorage.removeItem("co3a_"+r)}catch(e){}if(SYNC)try{await fetch(SYNC,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify({r,reset:1})});await new Promise(z=>setTimeout(z,1500))}catch(e){}load()}
+async function csv(){if(!L.length)return alert("No attempts yet.");const lb=a=>a.st==="done"?"Completed":a.st==="mal"?"Auto-submitted – Malpractice":"In progress",q=x=>'"'+String(x??"").replace(/"/g,'""')+'"';const d="\uFEFF"+["S.No,Name,Register No,Faculty,Course Code,Score/50,Percentage,Time Taken,Violations Count,Status,Submitted At"].concat(L.map((a,i)=>[i+1,a.n,a.r,a.f,a.c,a.sc??"",a.sc!=null?(a.sc/a.tot*100).toFixed(2):"",a.tk!=null?mmss(a.tk):"",(a.v||[]).length,lb(a),a.end?new Date(a.end).toLocaleString():""].map(q).join(","))).join("\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([d],{type:"text/csv;charset=utf-8;"}));a.download="CO3_Numerical_Differentiation_Integration_Results.csv";a.click();URL.revokeObjectURL(a.href)}
+</script>
+</body>
+</html>
